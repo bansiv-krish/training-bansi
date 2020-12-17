@@ -11,10 +11,9 @@ function(
         type: 'popup',
         responsive: true,
         innerScroll: true,
-        title: 'Modal Title',
-        modalClass: 'custom-block-customer-login',
+        title: 'Login',
+        modalClass: 'block-customer-custom-login',
         buttons: [{
-            text: $.mage.__('Continue'),
             class: '',
             click: function () {
                 this.closeModal();
