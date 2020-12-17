@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Account\AuthorizationLink $block */
+
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<li class="authorization-link" data-label="<?= $block->escapeHtml(__('or')) ?>" data-mage-init='{"TrainingBansi_LoginPopup/js/login-popup": {}}'>
+    <a href="#"   id="login-link">
+        <?= $block->escapeHtml($block->getLabel()) ?>
+    </a>
+</li>
+
+<div id="popup-modal" >
+    yes I am the modal.
+ </div>
