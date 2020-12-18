@@ -15,8 +15,16 @@
             </referenceBlock>
         </referenceBlock>
         <referenceContainer name="content">
-       <block class="Magento\Customer\Block\Form\Login" name="customer_custom_form_login" template="TrainingBansi_LoginPopup::form/custom-login.phtml">
+        <block class="Magento\Customer\Block\Form\Login" name="customer_custom_form_login" template="TrainingBansi_LoginPopup::form/custom-login.phtml">
                     <container name="form.additional.info" as="form_additional_info"/>
+                    <block class="Magento\Customer\Block\Form\Login\Info" name="customer_popup.new" template="TrainingBansi_LoginPopup::newcustomer.phtml"/>
+        </block>
+        <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="TrainingBansi_LoginPopup::form/register.phtml">
+            <arguments>
+                    <argument name="attribute_data" xsi:type="object">Magento\Customer\Block\DataProviders\AddressAttributeData</argument>
+                </arguments>
+                <container name="form.additional.info" as="form_additional_info"/>
+                <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
         </block>
     </referenceContainer>
     </body>

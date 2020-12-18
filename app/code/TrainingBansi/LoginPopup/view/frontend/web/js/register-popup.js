@@ -9,32 +9,17 @@ function(
     $,
     modal,
     url
-) {
-	var dataForm = $('#popup-login-form');
-	dataForm.mage('validation', {});
-    let options = {
-        type: 'popup',
-        responsive: true,
-        innerScroll: true,
-        title: 'Login',
-        buttons: []
-    };
-    
-    let $myModal = $('#popup-modal');
-    let popup = modal(options, $myModal);
-    
-    
-    $("#login-link").click(function() {
-    $myModal.modal('openModal');
-    });
-    $('#popup-login-form').submit(function(){
-    	var status = dataForm.validation('isValid');
-    	
-    	if(status){
+) {    
+    var dataForm = $('#form-validate-popup');
+    dataForm.mage('validation', {});
+    $('#form-validate-popup').submit(function(){
+        var status = dataForm.validation('isValid');
+        
+        if(status){
         url.setBaseUrl(BASE_URL);
-        var loginUrl = url.build('customerlogin/ajax/login');
-        var loginButton = $('#popup-login-form').find('button[type=submit]');       
-                loginButton.attr("disabled", "disabled");
+        var loginUrl = url.build('customer/account/createpost');
+        var loginButton = $('#form-validate-popup').find('button[type=submit]');       
+                //loginButton.attr("disabled", "disabled");
                 var formData = getFormData($(this));
                 $.ajax({
                     type: "POST",
@@ -53,9 +38,8 @@ function(
                         }
                     }
                 });
-                 }
+            }
                 return false;
-
             });
         function getFormData(formElem){
                 var unindexed_array = formElem.serializeArray();

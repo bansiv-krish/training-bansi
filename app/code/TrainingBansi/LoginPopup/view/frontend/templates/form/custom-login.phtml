@@ -10,13 +10,13 @@
    
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
-              action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
               method="post"
-              id="login-form"
-              data-mage-init='{"validation":{}}'>
+              id="popup-login-form"
+              data-mage-init='{"TrainingBansi_LoginPopup/js/register-popup": {}}'>
             <?= $block->getBlockHtml('formkey') ?>
             <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
                 <div class="field note"><?= $block->escapeHtml(__('If you have an account, sign in with your email address.')) ?></div>
+                <div class="response-msg"></div>
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
                     <div class="control">
@@ -36,6 +36,7 @@
                 </div>
             </fieldset>
         </form>
+        <?php echo  $block->getChildHtml('customer_popup.new'); ?>
     </div>
 </div>
 
