@@ -1,11 +1,3 @@
-<?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-/** @var \Magento\Customer\Block\Form\Login\Info $block */
-?>
 <?php if ($block->getRegistration()->isAllowed()) : ?>
 <div class="block block-new-customer ">
     <div class="block-title">
@@ -15,7 +7,7 @@
         <p><?= $block->escapeHtml(__('Creating an account has many benefits: check out faster, keep more than one address, track orders and more.')) ?></p>
         <div class="actions-toolbar">
             <div class="primary">
-                <a href="#" class="action create primary" id="popup-register"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></a>
+                <a href="#" class="action create primary popup-register" ><span><?= $block->escapeHtml(__('Create an Account')) ?></span></a>
             </div>
         </div>
     </div>

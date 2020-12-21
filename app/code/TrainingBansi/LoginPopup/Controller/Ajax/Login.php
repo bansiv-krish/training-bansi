@@ -1,9 +1,4 @@
 <?php
-/**
- * Copyright © 2016 Magento. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 namespace TrainingBansi\LoginPopup\Controller\Ajax;
 
 use Magento\Customer\Api\AccountManagementInterface;

@@ -9,4 +9,6 @@
 	<type name="Magento\Customer\Controller\Account\CreatePost">
         <plugin name="ajax_customer_register" type="TrainingBansi\LoginPopup\Plugin\AjaxRegister" />
     </type>
+    <preference for="Magento\Customer\Block\Account\RegisterLink"
+                type="TrainingBansi\LoginPopup\Block\Account\RegisterLink" />
 </config>
