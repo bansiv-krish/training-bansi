@@ -4,6 +4,29 @@ $deal_status =  $_product->getData('deal_status');;
 $end_date = $_product->getData('date'); 
 
 
+if($deal_status && $end_date)
+{
 ?>
-<div><?=  $deal_status ?></div>
-<div><?=  $end_date  ?></div>
+
+<div id="countdowntimer" class="countdowntimer"><strong>Daily deal ends in: </strong><h3 id="end_date"></h3></div>
+ <script>
+    require([
+        'jquery',
+        'TrainingBansi_ProductDailyDeal/js/jquery.countdownTimer.min'
+    ], function ($) {
+        jQuery("#end_date").countdowntimer({
+            startDate : "<?php echo date('Y/m/d H:i:s'); ?>",
+            dateAndTime : "<?php echo str_replace('-','/',$end_date); ?>",
+            size : "lg",
+            timeUp:timeIsUp,
+            regexpMatchFormat: "([1-9]{1,2}):([1-9]{1,2}):([1-9]{1,2}):([1-9]{1,2})"
+
+        });
+        function timeIsUp() {
+       
+        $('#countdowntimer').addClass('no-display');
+        }
+        
+    });
+</script>
+<?php } ?>
