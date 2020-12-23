@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <virtualType name="PostListingDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+    <arguments>
+      <argument name="collection" xsi:type="object" shared="false">TrainingBansi\Grid\Model\Post</argument>
+       <argument name="filterpool" xsi:type="object" shared="false">MemberGridFilterPool</argument>
+    </arguments>
+  </virtualType>
+  <virtualType name="MemberGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+    <arguments>
+      <argument name="appliers" xsi:type="array">
+        <item name="regular" xsi:type="object">Magento\Framework\View\Element
+          UiComponent\RegularFilter</item>
+          <item name="fulltext" xsi:type="object">Magento\CatalogSearch\Ui\DataProvider\Product\AddFulltextFilterToCollection</item>
+      </argument>
+    </arguments>
+    
+  </virtualType>
+  <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+    <arguments>
+      <argument name="collections" xsi:type="array">
+        <item name="admingrid_listing_data_source" xsi:type="string">GridCollection</item>
+      </argument>
+    </arguments>
+  </type>
+  
+  <virtualType name="GridCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+   <arguments>
+     <argument name="mainTable" xsi:type="string">grid_post</argument>
+     <argument name="resourceModel" xsi:type="string">TrainingBansi\Grid\Model\ResourceModel\Post</argument>
+   </arguments>
+ </virtualType>
+  </config>

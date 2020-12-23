@@ -1,0 +1,25 @@
+{
+    "grid_post": {
+        "column": {
+            "id": true,
+            "title": true,
+            "description": true,
+            "is_enabled": true,
+            "status": true,
+            "Color": true,
+            "category_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "color": true,
+            "post_type": true
+        },
+        "index": {
+            "GRID_POST_TITLE_DESCRIPTION_CATEGORY_ID": true,
+            "GRID_POST_TITLE_DESCRIPTION": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "GRID_POST_CATEGORY_ID_CATALOG_CATEGORY_ENTITY_ENTITY_ID": true
+        }
+    }
+}

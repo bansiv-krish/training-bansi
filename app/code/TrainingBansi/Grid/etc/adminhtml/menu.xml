@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+     <add id="TrainingBansi_Grid::menu" title="Blog" module="TrainingBansi_Grid" sortOrder="100" resource="TrainingBansi_Grid::menu" />
+      <add id="TrainingBansi_Grid::home" title="Posts" module="TrainingBansi_Grid" sortOrder="100" parent="TrainingBansi_Grid::menu" action="admingrid/index/index" resource="TrainingBansi_Grid::home"/>
+ 	</menu>
+</config>
