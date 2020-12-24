@@ -1,0 +1,31 @@
+<div>
+<a class="action primary" href="<?= $escaper->escapeUrl($block->getUrl('frontgrid/index/create')); ?>">Add Post</a>
+<table>
+     <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th colspan="2">Action</th>
+     </tr>
+ 
+     <?php
+          $collection = $block->getResult();
+          $viewmodel=$block->getData('view_model');
+          $status=$viewmodel->getStatus();
+          $post_types=$viewmodel->getPostType();
+     foreach ($collection as $item) {
+            ?>
+     <tr>
+          <td><?= $escaper->escapeHtmlAttr($item->getId()); ?></td>
+          <td><?= $escaper->escapeHtmlAttr($item->getTitle()); ?></td>
+          <td><?= $escaper->escapeHtmlAttr($item->getDescription()); ?></td>
+          <td><?= $post_types[$escaper->escapeHtmlAttr($item->getPostType())]['label']; ?></td>
+          <td><?= $status[$escaper->escapeHtmlAttr($item->getStatus())]['label']; ?></td>
+          <td><a href="<?= $escaper->escapeUrl($block->getUrl('frontgrid/index/edit').'id/'.$escaper->escapeHtmlAttr($item->getId())); ?>" class="action primary">Edit</a></td>
+          <td><a href="<?= $escaper->escapeUrl($block->getUrl('frontgrid/index/delete').'?id='.$escaper->escapeHtmlAttr($item->getId())); ?>" class="action primary">Delete</a></td>
+     </tr>
+     <?php } ?>
+</table>
+</div>

@@ -1,0 +1,72 @@
+<?php
+$viewmodel=$block->getData('view_model');
+$status=$viewmodel->getStatus();
+$post_types=$viewmodel->getPostType();
+$categories=$viewmodel->getCategories();
+$post = $block->getEditRecord();
+?>
+<div class="block">
+<div class="block-content">
+<form method="POST" action="<?= $escaper->escapeUrl($block->getUrl('frontgrid/index/save')); ?>" data-mage-init='{"validation":{}}' class="form">
+     <input type="hidden" name="editRecordId" value="<?= isset($post['id']) ? $escaper->escapeHtmlAttr($post['id']) :'' ?>" />
+     <div class="field">
+          <label class="label">Title</label>
+          <div class="control">
+          <input type="text" name="title"  class="input-text" data-validate="{required:true}" value="<?= isset($post['title']) ? $escaper->escapeHtmlAttr($post['title']) :'' ?>"/>
+          </div>
+     </div>
+     <div class="field">
+          <label>Description</label>
+          <div class="control"> 
+          <textarea name="description"><?= isset($post['description']) ? $escaper->escapeHtmlAttr($post['description']) :'' ?></textarea> 
+          </div>
+     </div>
+     <div class="field">  
+          <label>Color</label>
+          <div class="control"> 
+          <input type="color" name="color" value="<?= isset($post['color']) ? $escaper->escapeHtmlAttr($post['color']) :'' ?>"> 
+          </div>
+
+     </div>
+     <div class="field" data-validate="{required:true}">  
+          <label>Type</label>
+          <div class="control"> 
+          <?php foreach ($post_types as $post_type) { ?>
+              <input type="radio" name="post_type" value="<?= $escaper->escapeHtmlAttr($post_type['value']) ?>" <?= isset($post['post_type']) && $escaper->escapeHtmlAttr($post['post_type'])==$post_type['value'] ? 'checked' :'' ?>> <?= $escaper->escapeHtmlAttr($post_type['label']) ?>
+         <?php } ?>
+    </div>
+     </div>
+     <div class="field">  
+          <label>Status</label>
+          <div class="control"> 
+          <select name="status" data-validate="{required:true}">
+               <?php foreach ($status as $item) { ?>
+                <option value=<?= $escaper->escapeHtmlAttr($item['value']) ?>  <?= isset($post['status']) && $escaper->escapeHtmlAttr($post['status'])==$escaper->escapeHtmlAttr($item['value']) ? 'selected' :'' ?> ><?= $escaper->escapeHtmlAttr($item['label']) ?></option>
+
+           <?php }?>
+          </select>
+     </div>
+     </div>
+     <div class="field">  
+          <label>Is enabled</label>
+          <input type="checkbox" name="is_enabled" value="1" <?= isset($post['is_enabled']) && $escaper->escapeHtmlAttr($post['is_enabled'])==1 ? 'checked' :'' ?>> 
+
+     </div>
+     <div class="field">  
+          <label>Category</label>
+          <div class="control"> 
+          <select name="category_id" multiple data-validate="{required:true}">
+               <?php foreach ($categories as $category) { ?>
+                <option value=<?= $escaper->escapeHtmlAttr($category['value']) ?> <?= isset($post['category_id']) && $escaper->escapeHtmlAttr($post['category_id'])==$category['value'] ? 'selected' :'' ?>><?= $escaper->escapeHtmlAttr($category['label']) ?></option>
+
+           <?php }?>
+          </select>
+          </div>
+     </div>
+     <div class="control">  
+     <input type="submit" value="Submit" class="action primary"/>
+     <a  class="action primary" href="<?= $escaper->escapeUrl($block->getUrl('frontgrid/index/index')); ?>">Cancel</a>
+     </div>
+</form>
+</div>
+</div>

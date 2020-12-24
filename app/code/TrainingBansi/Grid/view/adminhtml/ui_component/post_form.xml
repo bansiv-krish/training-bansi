@@ -80,7 +80,7 @@
             <settings>
                 <label translate="true">Color</label>
                 <elementTmpl>ui/form/element/color-picker</elementTmpl>
-                <colorFormat>rgb</colorFormat>
+                <colorFormat>hex</colorFormat>
                 <colorPickerMode>full</colorPickerMode>
                 <dataScope>color</dataScope>
             </settings>

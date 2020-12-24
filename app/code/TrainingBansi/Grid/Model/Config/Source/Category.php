@@ -15,15 +15,15 @@ class Category implements ArrayInterface
         $options = [
             0 => [
                 'label' => 'Test',
-                'value' => '1'
+                'value' => '0'
             ],
             1 => [
                 'label' => 'Test1',
-                'value' => '2'
+                'value' => '1'
             ],
             2 => [
                 'label' => 'Test2',
-                'value' => '3'
+                'value' => '2'
             ],
         ];
 

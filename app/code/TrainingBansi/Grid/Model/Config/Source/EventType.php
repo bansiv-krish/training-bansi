@@ -15,11 +15,11 @@ class EventType implements ArrayInterface
         $options = [
             0 => [
                 'label' => 'Event',
-                'value' => '1'
+                'value' => '0'
             ],
             1 => [
                 'label' => 'Simple',
-                'value' => '0'
+                'value' => '1'
             ],
         ];
 
