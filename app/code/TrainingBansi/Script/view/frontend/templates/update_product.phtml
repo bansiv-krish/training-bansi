@@ -1,0 +1,23 @@
+<div class="block">
+<div class="block-content">
+<form method="POST" action="<?= $escaper->escapeUrl($block->getUrl('updatestockscript/index/save')); ?>" data-mage-init='{"validation":{}}' class="form">
+     
+     <div class="field">
+          <label class="label">Product Sku</label>
+          <div class="control">
+          <input type="text" name="sku"  class="input-text" data-validate="{required:true}"/>
+          </div>
+     </div>
+     <div class="field">
+          <label class="label">Quantity</label>
+          <div class="control">
+          <input type="text" name="qty"  class="input-text" data-validate="{required:true,'validate-number':true}" />
+          </div>
+     </div>
+     <div class="control">  
+     <input type="submit" value="Submit" class="action primary"/>
+     <a  class="action primary" href="<?= $escaper->escapeUrl($block->getUrl('updatestockscript/index/index')); ?>">Cancel</a>
+     </div>
+</form>
+</div>
+</div>
