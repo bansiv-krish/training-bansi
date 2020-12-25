@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+      <add id="TrainingBansi_CustomerLoginIp::home" title="Customer IP Addresses" module="TrainingBansi_CustomerLoginIp" sortOrder="100" parent="Magento_Customer::customer" action="customeripgrid/index/index" resource="TrainingBansi_CustomerLoginIp::home"/>
+ 	</menu>
+</config>

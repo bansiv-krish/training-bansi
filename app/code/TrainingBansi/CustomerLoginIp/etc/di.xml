@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <virtualType name="IpListingDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+    <arguments>
+      <argument name="collection" xsi:type="object" shared="false">TrainingBansi\CustomerLoginIp\Model\CustomerIpAddress</argument>
+      <argument name="filterpool" xsi:type="object" shared="false">MemberGridFilterPool</argument>
+    </arguments>
+  </virtualType>
+  <virtualType name="MemberGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+    <arguments>
+      <argument name="appliers" xsi:type="array">
+        <item name="regular" xsi:type="object">Magento\Framework\View\Element
+          UiComponent\RegularFilter</item>
+          <item name="fulltext" xsi:type="object">Magento\CatalogSearch\Ui\DataProvider\Product\AddFulltextFilterToCollection</item>
+        </argument>
+      </arguments>
+      
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+      <arguments>
+        <argument name="collections" xsi:type="array">
+          <item name="custoemeripgrid_listing_data_source" xsi:type="string">GridIpCollection</item>
+        </argument>
+      </arguments>
+    </type>
+    
+    <virtualType name="GridIpCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+     <arguments>
+       <argument name="mainTable" xsi:type="string">customer_ipaddress</argument>
+       <argument name="resourceModel" xsi:type="string">TrainingBansi\CustomerLoginIp\Model\ResourceModel\CustomerIpAddress</argument>
+     </arguments>
+   </virtualType>
+   <type name="Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="customer_login_ipaddress" type="TrainingBansi\CustomerLoginIp\Plugin\LoginPrevent" />
+    </type>
+     <type name="Magento\Customer\Controller\Ajax\Login">
+        <plugin name="customer_ajax_login_ipaddress" type="TrainingBansi\CustomerLoginIp\Plugin\LoginAjaxPrevent" />
+    </type>
+</config>

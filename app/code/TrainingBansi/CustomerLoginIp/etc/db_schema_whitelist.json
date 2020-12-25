@@ -1,0 +1,16 @@
+{
+    "customer_ipaddress": {
+        "column": {
+            "id": true,
+            "ip": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "CUSTOMER_IPADDRESS_IP": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

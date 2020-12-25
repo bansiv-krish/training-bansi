@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+  <argument name="data" xsi:type="array">
+     <item name="js_config" xsi:type="array">
+        <item name="provider" xsi:type="string">custoemeripgrid_listing.custoemeripgrid_listing_data_source</item>
+        <item name="deps" xsi:type="string">custoemeripgrid_listing.custoemeripgrid_listing_data_source</item>
+     </item>
+     <item name="spinner" xsi:type="string">grid_columns</item>
+     <item name="buttons" xsi:type="array">
+        <item name="add" xsi:type="array">
+           <item name="name" xsi:type="string">add</item>
+           <item name="label" xsi:type="string">Create</item>
+           <item name="class" xsi:type="string">primary</item>
+           <item name="url" xsi:type="string">*/*/newAction</item>
+        </item>
+     </item>
+  </argument>
+  <dataSource name="custoemeripgrid_listing_data_source" component="Magento_Ui/js/grid/provider">
+   <argument name="dataProvider" xsi:type="configurableObject">
+       <argument name="class" xsi:type="string">IpListingDataProvider</argument>
+       <argument name="name" xsi:type="string">custoemeripgrid_listing_data_source</argument>
+       <argument name="primaryFieldName" xsi:type="string">id</argument>
+       <argument name="requestFieldName" xsi:type="string">id</argument>
+       <argument name="data" xsi:type="array">
+         <item name="config" xsi:type="array">
+           <item name="update_url" xsi:type="url" path="mui/index/render"/>
+           <item name="storageConfig" xsi:type="array">
+             <item name="indexField" xsi:type="string">id</item>
+           </item>
+         </item>
+       </argument>
+   </argument>
+   <argument name="data" xsi:type="array">
+     <item name="js_config" xsi:type="array">
+        <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+     </item>
+   </argument>
+  </dataSource>
+  <listingToolbar name="listing_top">
+    <settings>
+            <sticky>true</sticky>
+        </settings>
+    <bookmark name="bookmarks"/>
+    <columnsControls name="columns_controls"/>
+    <filterSearch name="fulltext"/>
+   <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+            
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+</massaction>
+    <paging name="listing_paging"/>
+  </listingToolbar>
+  <columns name="grid_columns">
+     <settings>
+            
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">custoemeripgrid_listing.custoemeripgrid_listing.grid_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+    <selectionsColumn name="ids">
+       <argument name="data" xsi:type="array">
+           <item name="config" xsi:type="array">
+              <item name="indexField" xsi:type="string">id</item>
+           </item>
+       </argument>
+    </selectionsColumn>
+    <column name="id">
+      <settings>
+         <filter>textRange</filter>
+         <label translate="true">ID</label>
+         <resizeDefaultWidth>25</resizeDefaultWidth>
+      </settings>
+    </column>
+
+    <column name="ip">
+      <settings>
+         <filter>text</filter>
+         <label translate="true">Title</label>
+     </settings>
+    </column>
+    
+   <actionsColumn name="actions" class="TrainingBansi\CustomerLoginIp\Ui\Component\Listing\Column\Actions" sortOrder="800">
+       <argument name="data" xsi:type="array">
+          <item name="config" xsi:type="array">
+              <item name="resizeEnabled" xsi:type="boolean">false</item>
+              <item name="resizeDefaultWidth" xsi:type="string">107</item>
+              <item name="indexField" xsi:type="string">id</item>
+          </item>
+       </argument>
+       <argument name="viewUrl" xsi:type="string">catalog/category/view</argument>
+    </actionsColumn> 
+    
+  </columns>
+</listing>
