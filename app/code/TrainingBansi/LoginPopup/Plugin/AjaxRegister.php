@@ -43,7 +43,7 @@ class AjaxRegister
      */
       protected $customerAccountManagement; 
       /**
-     * @var SubscriptionManagerInterface
+     * @var \Magento\Newsletter\Model\SubscriptionManager
      */
       protected $subscriptionManager; 
     /**
@@ -56,7 +56,7 @@ class AjaxRegister
      *@param Session $customerSession
      *@param Registration $registration
      *@param AccountManagementInterface $customerAccountManagement
-     *@param \Magento\Newsletter\Model\SubscriptionManagerInterface $subscriptionManager
+     *@param \Magento\Newsletter\Model\SubscriptionManager $subscriptionManager
      */
     public function __construct(
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
@@ -67,7 +67,7 @@ class AjaxRegister
         Session $customerSession,
         Registration $registration,
         AccountManagementInterface $customerAccountManagement,
-        \Magento\Newsletter\Model\SubscriptionManagerInterface $subscriptionManager
+        \Magento\Newsletter\Model\SubscriptionManager $subscriptionManager
     ) {
 
         $this->resultJsonFactory = $resultJsonFactory;
