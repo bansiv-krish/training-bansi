@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+    	 <section id="customAttrSection" translate="label"  sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+         	<label>Custom Attribute Section</label>
+         	<tab>customer</tab>
+         	<resource>Magento_Customer::config_customer</resource>
+         	<group id="customAttrGroup" showInDefault="1" showInWebsite="1" showInStore="1">
+         		<label>Show "Father’s Name" and "Mother’s Name"in frontend</label>
+         		<field id="show_father_name" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="select" sortOrder="100">
+                    <label>Father’s Name</label>
+                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_mother_name" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="select" sortOrder="100">
+                    <label>Mother’s Name</label>
+                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+         	</group>
+         </section>
+    </system>
+</config>

@@ -1,0 +1,28 @@
+<?php
+$father_name = $block->getCustomer()->getCustomAttribute('father_name');
+$mother_name = $block->getCustomer()->getCustomAttribute('mother_name');
+$config = $block->getLayout()->createBlock(\Magento\Config\Block\System\Config\Form::class);
+$show_father_name=$config->getConfigValue('customAttrSection/customAttrGroup/show_father_name');
+$show_mother_name=$config->getConfigValue('customAttrSection/customAttrGroup/show_mother_name');
+$father_name=$father_name ?$father_name->getValue() :'';
+$mother_name = $mother_name ?$mother_name->getValue() :'';
+?>
+<?php if ($show_father_name==1 || $show_mother_name==1) {?>
+<fieldset class="fieldset create account" >
+     <?php if ($show_father_name==1) {?> 
+   <div class="field">
+        <label for="father_name" class="label"><span><?=$block->escapeHtmlAttr(__('Father Name'));?></span></label>
+        <div class="control">
+            <input id="father_name" class="input-text" name="father_name" value="<?= $block->escapeHtml($father_name);?>" title="<?=$block->escapeHtmlAttr(__('Father Name'));?>" type="text" autocomplete="off" />
+        </div>
+    </div>
+    <?php }if ($show_mother_name==1) { ?>
+    <div class="field">
+        <label for="mother_name" class="label"><span><?=$block->escapeHtmlAttr(__('Mother Name'));?></span></label>
+        <div class="control">
+            <input id="mother_name" class="input-text" name="mother_name" value="<?= $block->escapeHtml($mother_name);?>" title="<?=$block->escapeHtmlAttr(__('Mother Name'));?>" type="text" autocomplete="off" />
+        </div>
+    </div>
+    <?php } ?>
+</fieldset>
+<?php } ?>

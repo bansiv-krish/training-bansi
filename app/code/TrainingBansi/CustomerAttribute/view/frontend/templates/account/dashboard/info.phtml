@@ -1,0 +1,13 @@
+<?php
+$father_name = $block->getCustomer()->getCustomAttribute('father_name');
+$mother_name = $block->getCustomer()->getCustomAttribute('mother_name');
+$config = $block->getLayout()->createBlock(\Magento\Config\Block\System\Config\Form::class);
+$show_father_name=$config->getConfigValue('customAttrSection/customAttrGroup/show_father_name');
+$show_mother_name=$config->getConfigValue('customAttrSection/customAttrGroup/show_mother_name');
+
+?>
+<?php if ($show_father_name==1) {?> 
+<p>Father Name: <?= $father_name ?$block->escapeHtml($father_name->getValue()) :'';?></p>
+<?php }if ($show_mother_name==1) { ?>
+<p>Mother Name: <?= $mother_name ?$block->escapeHtml($mother_name->getValue()) :'';?></p>
+<?php } ?>
