@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+    	 <section id="orderFeeSection" translate="label"  sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+         	<label>Order Processing Fee</label>
+         	<tab>sales</tab>
+         	<resource>Magento_Payment::payment</resource>
+         	<group id="orderFeeGroup" showInDefault="1" showInWebsite="1" showInStore="1">
+         		
+         		<field id="is_additional_fee" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="select" sortOrder="100">
+                    <label>Apply Additional Fee</label>
+                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+               
+                <field id="order_fees" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" type="text" sortOrder="100">
+                    <label>Order Processing Fee</label>
+                    <comment>Add fee in %. This fee will be added to the product price as an additional fee.</comment>
+                </field>
+         	</group>
+         </section>
+    </system>
+</config>
