@@ -12,13 +12,13 @@ class ProcessingFee extends AbstractTotal
      */
     public function collect(\Magento\Sales\Model\Order\Creditmemo $creditmemo)
     {
-        $creditmemo->setFee(0);
+        $creditmemo->setProcessingFee(0);
 
-        $amount = $creditmemo->getOrder()->getFee();
-        $creditmemo->setFee($amount);
+        $amount = $creditmemo->getOrder()->getProcessingFees();
+        $creditmemo->setProcessingFee($amount);
 
-        $creditmemo->setGrandTotal($creditmemo->getGrandTotal() + $creditmemo->getFee());
-        $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() + $creditmemo->getFee());
+        $creditmemo->setGrandTotal($creditmemo->getGrandTotal() + $creditmemo->getProcessingFees());
+        $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() + $creditmemo->getProcessingFees());
 
         return $this;
     }

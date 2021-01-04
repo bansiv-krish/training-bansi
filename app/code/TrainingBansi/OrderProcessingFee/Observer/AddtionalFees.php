@@ -32,6 +32,11 @@ class AddtionalFees implements ObserverInterface
             $setupFees =($subtotal*$processing_fees)/100;
             $quote->setProcessingFees($setupFees);
             $this->quoteRepository->save($quote);
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/testa.log');
+            $logger = new \Zend\Log\Logger();
+            $logger->addWriter($writer);
+            $logger->info('invoke function is calling');
+            $logger->info($quoteEvent->getIsActive());
         }
         return $this;
     }

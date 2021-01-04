@@ -35,8 +35,7 @@ class ProcessingFee extends \Magento\Quote\Model\Quote\Address\Total\AbstractTot
             $total->setBaseTotalAmount('fee', $fee);
 
             $total->setProcessingFee($fee);
-        // $total->setBaseFee($fee);
-        // //var_dump($total->getBaseGrandTotal() + $fee);exit();
+       
         // $total->setGrandTotal($total->getGrandTotal() + $fee);
         // $total->setBaseGrandTotal($total->getBaseGrandTotal() + $fee);
         }

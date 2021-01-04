@@ -12,12 +12,12 @@ class ProcessingFee extends AbstractTotal
      */
     public function collect(\Magento\Sales\Model\Order\Invoice $invoice)
     {
-        $invoice->setFee(0);
+        $invoice->setProcessingFees(0);
 
-        $amount = $invoice->getOrder()->getFee();
-        $invoice->setFee($amount);
-        $invoice->setGrandTotal($invoice->getGrandTotal() + $invoice->getFee());
-        $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $invoice->getFee());
+        $amount = $invoice->getOrder()->getProcessingFees();
+        $invoice->setProcessingFees($amount);
+        $invoice->setGrandTotal($invoice->getGrandTotal() + $invoice->getProcessingFees());
+        $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() + $invoice->getProcessingFees());
 
         return $this;
     }

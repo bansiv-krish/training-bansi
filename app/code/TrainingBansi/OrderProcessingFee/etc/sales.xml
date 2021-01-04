@@ -5,7 +5,7 @@
             <item name="processing_fees" instance="TrainingBansi\OrderProcessingFee\Model\Quote\Total\ProcessingFee" sort_order="150"/>
         </group>
     </section>
-    <!-- <section name="order_invoice">
+    <section name="order_invoice">
         <group name="totals">
             <item name="processing_fees" instance="TrainingBansi\OrderProcessingFee\Model\Invoice\Total\ProcessingFee" sort_order="160"/>
         </group>
@@ -13,6 +13,7 @@
     <section name="order_creditmemo">
         <group name="totals">
             <item name="processing_fees" instance="TrainingBansi\OrderProcessingFee\Model\Creditmemo\Total\ProcessingFee" sort_order="160"/>
-        </group> 
-    </section>-->
+        </group>
+    </section>
+    
 </config>
