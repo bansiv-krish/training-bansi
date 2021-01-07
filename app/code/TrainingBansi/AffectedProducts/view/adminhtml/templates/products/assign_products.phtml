@@ -3,16 +3,7 @@
     $gridJsObjectName = $blockGrid->getJsObjectName();
 ?>
 <?= $block->getGridHtml() ?>
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "RH_CustProductGrid/js/assign-products": {
-                "selectedProducts":  <?= /* @escapeNotVerified */ $block->getProductsJson() ?>,
-                "gridJsObjectName": <?= /* @escapeNotVerified */ '"' . $gridJsObjectName . '"' ?: '{}' ?>
-            }
-        }
-    }
-</script>
+
 <script>
     require('mage/apply/main').apply();
 </script>

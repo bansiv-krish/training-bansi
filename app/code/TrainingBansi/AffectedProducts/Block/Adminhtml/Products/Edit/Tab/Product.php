@@ -57,16 +57,14 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
     protected function _construct()
     {
         parent::_construct();
-        $this->setId('rh_grid_products');
+        $this->setId('catalog_rule_affected_products');
         $this->setDefaultSort('entity_id');
-        $this->setDefaultDir('ASC');
         $this->setUseAjax(true);
         if ($this->getRequest()->getParam('entity_id')) {
             $this->setDefaultFilter(['in_products' => 1]);
         } else {
             $this->setDefaultFilter(['in_products' => 0]);
         }
-        $this->setSaveParametersInSession(true);
     }
     /**
      * [get store id]
@@ -75,67 +73,16 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     protected function _getStore()
     {
-        $storeId = (int) $this->getRequest()->getParam('store', 0);
+        $storeId = (int) $this->getRequest()->getParam('store', 1);
+        
         return $this->_storeManager->getStore($storeId);
     }
     
     protected function _prepareCollection()
     {
         $store = $this->_getStore();
-        $collection = $this->productFactory->create()->getCollection()->addAttributeToSelect(
-            'sku'
-        )->addAttributeToSelect(
-            'name'
-        )->addAttributeToSelect(
-            'attribute_set_id'
-        )->addAttributeToSelect(
-            'type_id'
-        )->setStore(
-            $store
-        );
-        if ($this->moduleManager->isEnabled('Magento_CatalogInventory')) {
-            $collection->joinField(
-                'qty',
-                'cataloginventory_stock_item',
-                'qty',
-                'product_id=entity_id',
-                '{{table}}.stock_id=1',
-                'left'
-            );
-        }
-        if ($store->getId()) {
-            $collection->setStoreId($store->getId());
-            $collection->addStoreFilter($store);
-            $collection->joinAttribute(
-                'name',
-                'catalog_product/name',
-                'entity_id',
-                null,
-                'inner',
-                Store::DEFAULT_STORE_ID
-            );
-            $collection->joinAttribute(
-                'status',
-                'catalog_product/status',
-                'entity_id',
-                null,
-                'inner',
-                $store->getId()
-            );
-            $collection->joinAttribute(
-                'visibility',
-                'catalog_product/visibility',
-                'entity_id',
-                null,
-                'inner',
-                $store->getId()
-            );
-            $collection->joinAttribute('price', 'catalog_product/price', 'entity_id', null, 'left', $store->getId());
-        } else {
-            $collection->addAttributeToSelect('price');
-            $collection->joinAttribute('status', 'catalog_product/status', 'entity_id', null, 'inner');
-            $collection->joinAttribute('visibility', 'catalog_product/visibility', 'entity_id', null, 'inner');
-        }
+        $collection = $this->productFactory->create()->getCollection()->addAttributeToSelect('sku')
+            ->addAttributeToSelect('name')->addAttributeToSelect('price');
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -145,7 +92,7 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
         $rule_id=$this->getRequest()->getParam('id');
       
         $results = $this->rule->load($rule_id);
-       
+        
         $productIdsAccToRule = $results->getMatchingProductIds();
         $resultProductIds=[];
         foreach ($productIdsAccToRule as $productId => $ruleProductArray) {
@@ -153,9 +100,7 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
             $resultProductIds[$productId] = $productId;
         }
  
-        if ($resultProductIds) {
-                    $this->getCollection()->addFieldToFilter('entity_id', ['in' => $resultProductIds]);
-        }
+         $this->getCollection()->addFieldToFilter('entity_id', ['in' => $resultProductIds]);
         return $this;
     }
     /**
@@ -220,32 +165,6 @@ class Product extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     public function getGridUrl()
     {
-        return $this->getUrl('*/products/grid', ['_current' => true]);
-    }
-    /**
-     * @return array
-     */
-    protected function _getSelectedProducts()
-    {
-        $products = array_keys($this->getSelectedProducts());
-        return $products;
-    }
-    /**
-     * @return array
-     */
-    public function getSelectedProducts()
-    {
-        $id = 1;
-        $model = $this->productCollFactory->create()->getCollection()->addFieldToFilter('entity_id', $id);
-        $grids = [];
-        foreach ($model as $key => $value) {
-            $grids[] = 1;
-        }
-        $prodId = [];
-        foreach ($grids as $obj) {
-            $prodId[$obj] = ['position' => "0"];
-        }
-        
-        return $prodId;
+        return $this->getUrl('affectedproducts/products/grid', ['_current' => true]);
     }
 }
